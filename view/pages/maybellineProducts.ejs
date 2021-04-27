@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div class="card">
+            <div class="cardPrice">
+                <% data.forEach(val =>{%>
+
+                    <h2><%= val.name%></h2>
+                    <img src="<%= data.img%>" alt="">
+                    <h3><%= val.price%></h3>
+                    <h3><%= val.description%></h3>
+
+                    <form action="/addProduct" method="POST">
+                        <input type="hidden" name="name"value="<%= val.name%>">
+                        <input type="hidden" name="img"value="<%= data.img%>">
+                        <input type="hidden" name="price"value="<%= val.price%>">
+                        <input type="hidden" name="description"value="<%= val.description%>">
+                        <button >Add to card</button>
+                    </form>
+
+               <% }) %>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div class="card">
+            <h2><%= data.name%></h2>
+            <img src="<%= data.img%>" alt="">
+            <h3><%= data.price%></h3>
+            <h3><%= data.description</h3>
+
+            <form action="/details/<%= data.id%>?_method=PUT" method="post">
+                <input name="name"value="<%= val.name%>">
+                <input name="img"value="<%= data.img%>">
+                <input name="price"value="<%= val.price%>">
+                <input name="description"value="<%= val.description%>">
+                <button type="submit" >Update</button>
+            </form>
+
+            <form action="/details/<%= data.id%>?_method=DELETE" method="post">
+                <button type="submit" >DELETE</button>
+            </form>
+           
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
