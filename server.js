@@ -11,8 +11,8 @@ const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
 
 const client = new pg.Client({ connectionString: process.env.DATABASE_URL,
-    //  ssl: { 
-    //      rejectUnauthorized: false }
+     ssl: { 
+         rejectUnauthorized: false }
 
          });
 
