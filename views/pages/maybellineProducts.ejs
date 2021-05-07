@@ -15,13 +15,13 @@
                 <% data.forEach(val =>{%>
 
                     <h2><%= val.name%></h2>
-                    <img src="<%= data.img%>" alt="">
+                    <img src="<%= val.img%>" alt="">
                     <h3><%= val.price%></h3>
                     <h3><%= val.description%></h3>
 
                     <form action="/addProduct" method="POST">
                         <input type="hidden" name="name"value="<%= val.name%>">
-                        <input type="hidden" name="img"value="<%= data.img%>">
+                        <input type="hidden" name="img"value="<%= val.img%>">
                         <input type="hidden" name="price"value="<%= val.price%>">
                         <input type="hidden" name="description"value="<%= val.description%>">
                         <button >Add to card</button>
