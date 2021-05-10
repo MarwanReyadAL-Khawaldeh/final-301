@@ -30,7 +30,7 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 server.get('/',homePages);
 server.get('/product',productHandler);
-server.get('pages/maybellineProducts',maybellineProducts);
+server.get('/maybellineProducts',maybellineProducts);
 server.post('/addProduct',insertProduct);
 server.get('/addProduct',renderProduct);
 server.get('/alreadyAdded',alreadyAdded);
@@ -53,6 +53,9 @@ function productHandler(req,res){
             return new product(val);
         });
         res.render('pages/product',{data:result});
+    }).catch(() => {
+
+        res.status(404).send('Page Not Found.');
     });
 
 }
@@ -65,6 +68,9 @@ function maybellineProducts (req,res){
         });
 
         res.render('pages/maybellineProducts',{data:result});
+    }).catch(() => {
+
+        res.status(404).send('Page Not Found.');
     });
 }
 
@@ -81,14 +87,19 @@ function insertProduct(req,res){
         }else if (data.rows[0].name===name){
             res.redirect('/alreadyAdded');
         }
+    }).catch(() => {
+
+        res.status(404).send('Page Not Found.');
     });
 }
 
 function renderProduct(req,res){
-    let SQL = 'SELECT * FROM makup WHERE create_by=$1;';
-    let saveValue = ['api'];
-    client.query(SQL,saveValue).then(data =>{
+    let SQL = 'SELECT * FROM makup;';
+    client.query(SQL).then(data =>{
         res.render('pages/myCard',{data:data.rows});
+    }).catch(() => {
+
+        res.status(404).send('Page Not Found.');
     });
 }
 
@@ -103,6 +114,9 @@ function renderDetails(req,res){
     let saveValue=[id];
     client.query(SQL, saveValue).then(data =>{
         res.render('pages/details',{data:data.rows[0]});
+    }).catch(() => {
+
+        res.status(404).send('Page Not Found.');
     });
 }
 
@@ -113,6 +127,9 @@ function updateProduct(req,res){
     client.query(SQL,saveValue).then(()=>{
         res.redirect(`/details/${id}`);
         
+    }).catch(() => {
+
+        res.status(404).send('Page Not Found.');
     });
 }
 
@@ -123,6 +140,9 @@ function deleteProduct(req,res){
     let SQL= 'DELETE FROM makup WHERE id=$1;';
     client.query(SQL,saveValue).then(()=>{
         res.redirect('/addProduct');
+    }).catch(() => {
+
+        res.status(404).send('Page Not Found.');
     });
 }
 
