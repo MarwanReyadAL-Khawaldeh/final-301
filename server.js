@@ -23,8 +23,8 @@ server.use(express.urlencoded({ extended: true }));
 server.use(methodOverride('_method'));
 server.use(express.static('./public'));
 
-const client = new pg.Client(process.env.DATABASE_URL);
-// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+// const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 
 
@@ -45,11 +45,12 @@ function homePages(req,res){
 }
 
 function productHandler(req,res){
-    let from = req.query.from;
-    let to = req.query.to;
-    let url = `http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&price_greater_than=${from}&price_less_than=${to}'`;
+    let from=req.query.from;
+    let to= req.query.to;
+    let url=`http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&price_greater_than=${from}&price_less_than=${to}`;
     superagent.get(url).then(data =>{
-        let result = data.body.map(val =>{
+        let dataBody=data.body;
+        let result = dataBody.map(val =>{
             return new product(val);
         });
         res.render('pages/product',{data:result});

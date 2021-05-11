@@ -3,15 +3,23 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <link rel="stylesheet" href="../../css/reset.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
     <title>home page</title>
 <body>
     <header>
-        <a href="/maybellineProducts">All Product </a>
+        <nav>
+            <a href="/">Home </a>
+            <a href="/maybellineProducts">All Product </a>
+            <a href="/addProduct">My Product </a>
+        </nav>
+
     </header>
     <main>
         <div class="card">
-            <div class="cardHome">
-                <form action="/product" method="GET">
+            <div class="myCard">
+                <form action="/product" method="GET" class="homeForm">
                     <input type="text" placeholder="Add Brand name">
                     <input type="text" name="from" >
                     <input type="text" name="to" >
@@ -23,7 +31,9 @@
         </div>
     </main>
     <footer>
-    
+        <h3>
+            All Rights Reserved 2021 &#174
+        </h3>
     </footer>
 </body>
 </html>
