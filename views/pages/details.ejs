@@ -30,11 +30,11 @@
                     <input name="img"value="<%= data.img%>">
                     <input name="price"value="<%= data.price%>">
                     <input name="description"value="<%= data.description%>"><br>
-                    <button type="submit" >Update</button>
+                    <button type="submit" class="update" >Update</button>
                 </form>
     
                 <form action="/details/<%= data.id%>?_method=DELETE" method="post">
-                    <button type="submit" >DELETE</button>
+                    <button type="submit" class="delete" >DELETE</button>
                 </form>
             </div>
 
